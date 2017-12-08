@@ -1,0 +1,36 @@
+{
+  "name": "ninja-task-1",
+  "version": "1.0.0",
+  "description": "payment for courses",
+  "main": "index.js",
+  "scripts": {
+    "start": "nodemon server/ --exec babel-node",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "dima",
+  "license": "ISC",
+  "devDependencies": {
+    "babel-cli": "^6.26.0",
+    "babel-plugin-add-module-exports": "^0.2.1",
+    "babel-plugin-syntax-async-functions": "^6.13.0",
+    "babel-plugin-transform-async-to-generator": "^6.24.1",
+    "babel-preset-env": "^1.6.1",
+    "eslint": "^4.12.1",
+    "eslint-config-airbnb": "^16.1.0",
+    "eslint-config-prettier": "^2.9.0",
+    "eslint-plugin-import": "^2.8.0",
+    "eslint-plugin-jsx-a11y": "^6.0.2",
+    "eslint-plugin-react": "^7.5.1",
+    "nodemon": "^1.12.5"
+  },
+  "dependencies": {
+    "jsonwebtoken": "^8.1.0",
+    "koa": "^2.4.1",
+    "koa-bodyparser": "^4.2.0",
+    "koa-helmet": "^3.3.0",
+    "koa-jwt": "^3.3.0",
+    "koa-logger": "^3.1.0",
+    "koa-router": "^7.3.0",
+    "mongoose": "^4.13.6"
+  }
+}
