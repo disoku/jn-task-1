@@ -36,7 +36,11 @@ class CoursesController {
    */
   async add(ctx) {
     try {
-      const course = await new Course(ctx.request.body).save();
+      const courseInstance = new Course(ctx.request.body);
+      console.log(courseInstance);
+        courseInstance.modules.push({ name: 'My comment' });
+
+        const course = await courseInstance.save();
       ctx.body = course;
     } catch (err) {
       ctx.throw(422);
