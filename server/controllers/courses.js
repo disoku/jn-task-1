@@ -88,6 +88,29 @@ class CoursesController {
     }
   }
 
+    /**
+     * Update a course
+     * @param {ctx} Koa Context
+     */
+    async addModule(ctx) {
+        try {
+            const courseInstance = await Course.findById(ctx.params.id);
+            courseInstance.modules.push({ name: ctx.request.body.name });
+
+            const course = await courseInstance.save();
+            ctx.body = course;
+            if (!course) {
+                ctx.throw(404);
+            }
+            ctx.body = course;
+        } catch (err) {
+            if (err.name === 'CastError' || err.name === 'NotFoundError') {
+                ctx.throw(404);
+            }
+            ctx.throw(500);
+        }
+    }
+
   /* eslint-enable no-param-reassign */
 }
 

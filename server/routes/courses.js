@@ -29,4 +29,8 @@ router.put('/:id', jwt, CoursesController.update);
 // This route is protected, call POST /api/authenticate to get the token
 router.delete('/:id', jwt, CoursesController.delete);
 
+// PUT /api/courses/id/modules
+// This route is protected, call POST /api/authenticate to get the token
+router.put('/:id/modules', jwt, CoursesController.addModule);
+
 export default router;

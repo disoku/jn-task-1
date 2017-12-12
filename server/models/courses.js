@@ -37,6 +37,8 @@ const courseSchema = new Schema({
         type: Date,
         default: Date.now
     }
+}, {
+    usePushEach: true
 });
 
 export default mongoose.model('Course', courseSchema);
