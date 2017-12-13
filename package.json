@@ -25,6 +25,8 @@
     "nodemon": "^1.12.5"
   },
   "dependencies": {
+    "bcrypt": "^1.0.3",
+    "joi": "^13.0.2",
     "jsonwebtoken": "^8.1.0",
     "koa": "^2.4.1",
     "koa-bodyparser": "^4.2.0",
