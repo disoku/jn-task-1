@@ -1,8 +1,8 @@
 import 'babel-polyfill';
 import Router from 'koa-router';
 import { baseApi } from '../config';
-import jwt from '../middlewares/jwt';
 import UsersController from '../controllers/users';
+import { adminOnly } from '../middlewares/authenticate';
 
 const api = 'users';
 
@@ -13,7 +13,6 @@ router.prefix(`/${baseApi}/${api}`);
 
 // POST /api/users
 // This route is protected, call POST /api/authenticate to get the token
-//todo add validation
-router.post('/', jwt, UsersController.add);
+router.post('/', adminOnly, UsersController.add);
 
 export default router;

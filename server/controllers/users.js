@@ -40,8 +40,9 @@ class UsersController {
     const schema = Joi.object().keys({
       username: Joi.string().min(3).max(30).required(),
       password: Joi.string().regex(/^[a-zA-Z0-9]{2,30}$/),
-      email: Joi.string().email()
-    })
+      email: Joi.string().email(),
+      role: Joi.string().valid('user', 'admin')
+    });
     const result = Joi.validate(body, schema);
 
     if (result.error) {
@@ -92,29 +93,6 @@ class UsersController {
   async delete(ctx) {
     try {
       const user = await User.findByIdAndRemove(ctx.params.id);
-      if (!user) {
-        ctx.throw(404);
-      }
-      ctx.body = user;
-    } catch (err) {
-      if (err.name === 'CastError' || err.name === 'NotFoundError') {
-        ctx.throw(404);
-      }
-      ctx.throw(500);
-    }
-  }
-
-  /**
-   * Update a user
-   * @param {ctx} Koa Context
-   */
-  async addModule(ctx) {
-    try {
-      const userInstance = await User.findById(ctx.params.id);
-      userInstance.modules.push({name: ctx.request.body.name});
-
-      const user = await userInstance.save();
-      ctx.body = user;
       if (!user) {
         ctx.throw(404);
       }

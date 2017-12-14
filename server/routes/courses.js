@@ -1,8 +1,8 @@
 import 'babel-polyfill';
 import Router from 'koa-router';
 import { baseApi } from '../config';
-import jwt from '../middlewares/jwt';
 import CoursesController from '../controllers/courses';
+import { authOnly, adminOnly} from '../middlewares/authenticate';
 
 const api = 'courses';
 
@@ -11,26 +11,26 @@ const router = new Router();
 router.prefix(`/${baseApi}/${api}`);
 
 // GET /api/courses
-router.get('/', CoursesController.find);
+router.get('/', authOnly, CoursesController.find);
 
 // POST /api/courses
 // This route is protected, call POST /api/authenticate to get the token
-router.post('/', jwt, CoursesController.add);
+router.post('/', adminOnly, CoursesController.add);
 
 // GET /api/courses/id
 // This route is protected, call POST /api/authenticate to get the token
-router.get('/:id', jwt, CoursesController.findById);
+router.get('/:id', authOnly, CoursesController.findById);
 
 // PUT /api/courses/id
 // This route is protected, call POST /api/authenticate to get the token
-router.put('/:id', jwt, CoursesController.update);
+router.put('/:id', adminOnly, CoursesController.update);
 
 // DELETE /api/courses/id
 // This route is protected, call POST /api/authenticate to get the token
-router.delete('/:id', jwt, CoursesController.delete);
+router.delete('/:id', adminOnly, CoursesController.delete);
 
 // PUT /api/courses/id/modules
 // This route is protected, call POST /api/authenticate to get the token
-router.put('/:id/modules', jwt, CoursesController.addModule);
+router.put('/:id/modules', adminOnly, CoursesController.addModule);
 
 export default router;
